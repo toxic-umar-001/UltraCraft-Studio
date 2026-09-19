@@ -14,6 +14,15 @@ import {
   Star,
   Shield,
   Rocket,
+  Scissors,
+  HardHat,
+  UtensilsCrossed,
+  Sparkles,
+  Dumbbell,
+  Home,
+  Send,
+  Eye,
+  Rocket as LaunchIcon,
 } from 'lucide-react';
 import UcsLogo from '@/components/UcsLogo';
 
@@ -30,7 +39,7 @@ function useScrollY() {
   return y;
 }
 
-function useInView(threshold = 0.15) {
+function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -51,34 +60,67 @@ function useInView(threshold = 0.15) {
   return { ref, visible };
 }
 
-const SERVICES = [
+type Service = {
+  icon: typeof Code2;
+  title: string;
+  desc: string;
+  iconBg: string;
+  iconColor: string;
+  barColor: string;
+  border: string;
+  glow: string;
+  learnColor: string;
+  learnHover: string;
+};
+
+const SERVICES: Service[] = [
   {
     icon: Code2,
     title: 'Custom Web Development',
     desc: 'Full-scale, responsive websites built clean from the ground up. No bloated frameworks, no filler — just fast, maintainable code that loads quickly and scales with your business.',
-    accent: 'from-cyan-500 to-blue-500',
-    glow: 'shadow-cyan-500/20',
+    iconBg: 'from-cyan-500/20 to-blue-500/20',
+    iconColor: 'text-cyan-400',
+    barColor: 'from-cyan-400 to-blue-400',
+    border: 'hover:border-cyan-500/30',
+    glow: 'hover:shadow-cyan-500/10',
+    learnColor: 'text-cyan-400',
+    learnHover: 'group-hover:text-cyan-300',
   },
   {
     icon: Paintbrush,
     title: 'UI/UX Redesigns',
     desc: 'We take what you already have and make it work harder. Outdated interfaces become modern, intuitive experiences that guide visitors exactly where you want them to go.',
-    accent: 'from-violet-500 to-purple-500',
-    glow: 'shadow-violet-500/20',
+    iconBg: 'from-violet-500/20 to-purple-500/20',
+    iconColor: 'text-violet-400',
+    barColor: 'from-violet-400 to-purple-400',
+    border: 'hover:border-violet-500/30',
+    glow: 'hover:shadow-violet-500/10',
+    learnColor: 'text-violet-400',
+    learnHover: 'group-hover:text-violet-300',
   },
   {
     icon: Zap,
     title: 'High-Impact Landing Pages',
     desc: 'Single-purpose pages engineered around one goal: conversion. Persuasive structure, clear calls to action, and layouts tested to turn clicks into clients.',
-    accent: 'from-amber-400 to-orange-500',
-    glow: 'shadow-amber-500/20',
+    iconBg: 'from-amber-400/20 to-orange-500/20',
+    iconColor: 'text-amber-400',
+    barColor: 'from-amber-400 to-orange-400',
+    border: 'hover:border-amber-500/30',
+    glow: 'hover:shadow-amber-500/10',
+    learnColor: 'text-amber-400',
+    learnHover: 'group-hover:text-amber-300',
   },
   {
     icon: TrendingUp,
     title: 'SEO & Performance Optimization',
     desc: 'Rank higher and load faster. We audit your Core Web Vitals, tighten your technical SEO, and strip out the dead weight that drags your site down in search results.',
-    accent: 'from-emerald-400 to-teal-500',
-    glow: 'shadow-emerald-500/20',
+    iconBg: 'from-emerald-400/20 to-teal-500/20',
+    iconColor: 'text-emerald-400',
+    barColor: 'from-emerald-400 to-teal-400',
+    border: 'hover:border-emerald-500/30',
+    glow: 'hover:shadow-emerald-500/10',
+    learnColor: 'text-emerald-400',
+    learnHover: 'group-hover:text-emerald-300',
   },
 ];
 
@@ -100,9 +142,119 @@ const WHY_US = [
 
 const NAV_LINKS = [
   { label: 'Services', href: '#services' },
+  { label: 'Work', href: '#work' },
+  { label: 'Process', href: '#process' },
   { label: 'About', href: '#about' },
-  { label: 'Why Us', href: '#why-us' },
   { label: 'Contact', href: '#contact' },
+];
+
+type ShowcaseItem = {
+  icon: typeof Scissors;
+  category: string;
+  title: string;
+  desc: string;
+  image: string;
+  alt: string;
+  tags: string[];
+  accent: string;
+  ring: string;
+  glow: string;
+};
+
+const SHOWCASE: ShowcaseItem[] = [
+  {
+    icon: Scissors,
+    category: 'Barbershop',
+    title: 'Sharp Cuts Studio',
+    desc: 'A booking-first website with real-time appointment slots, gallery showcase, and a clean, masculine aesthetic that matches the brand.',
+    image: 'https://images.pexels.com/photos/13058812/pexels-photo-13058812.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    alt: 'Rustic modern barber shop interior with classic decor',
+    tags: ['Booking System', 'Gallery', 'Local SEO'],
+    accent: 'text-cyan-400',
+    ring: 'group-hover:ring-cyan-500/30',
+    glow: 'group-hover:shadow-cyan-500/10',
+  },
+  {
+    icon: HardHat,
+    category: 'Contractor',
+    title: 'BuildRight Construction',
+    desc: 'A project portfolio site with service area maps, instant quote requests, and trust-building case studies that convert cold traffic.',
+    image: 'https://images.pexels.com/photos/8470035/pexels-photo-8470035.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    alt: 'Two contractors checking wall alignment with a level bar',
+    tags: ['Quote Forms', 'Portfolio', 'Lead Gen'],
+    accent: 'text-amber-400',
+    ring: 'group-hover:ring-amber-500/30',
+    glow: 'group-hover:shadow-amber-500/10',
+  },
+  {
+    icon: UtensilsCrossed,
+    category: 'Restaurant',
+    title: 'Ember & Oak',
+    desc: 'A mouth-watering digital menu, reservation widget, and atmospheric photography that fills tables before the weekend rush.',
+    image: 'https://images.pexels.com/photos/32523798/pexels-photo-32523798.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    alt: 'Elegant restaurant interior with modern wine display wall',
+    tags: ['Digital Menu', 'Reservations', 'Instagram-Ready'],
+    accent: 'text-violet-400',
+    ring: 'group-hover:ring-violet-500/30',
+    glow: 'group-hover:shadow-violet-500/10',
+  },
+  {
+    icon: Sparkles,
+    category: 'Beauty Salon',
+    title: 'Lumière Beauty',
+    desc: 'A sleek, luxurious booking platform with service menus, stylist profiles, and a loyalty program that keeps clients coming back.',
+    image: 'https://images.pexels.com/photos/13068377/pexels-photo-13068377.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    alt: 'Chic modern beauty salon with black and white decor',
+    tags: ['Stylist Profiles', 'Loyalty', 'Online Booking'],
+    accent: 'text-pink-400',
+    ring: 'group-hover:ring-pink-500/30',
+    glow: 'group-hover:shadow-pink-500/10',
+  },
+  {
+    icon: Dumbbell,
+    category: 'Fitness Studio',
+    title: 'IronPulse Gym',
+    desc: 'A high-energy membership site with class schedules, trainer bios, and a trial-pass funnel that packs the first session.',
+    image: 'https://images.pexels.com/photos/7031705/pexels-photo-7031705.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    alt: 'Modern gym with fitness equipment and panoramic windows',
+    tags: ['Class Schedules', 'Trial Pass', 'Membership'],
+    accent: 'text-emerald-400',
+    ring: 'group-hover:ring-emerald-500/30',
+    glow: 'group-hover:shadow-emerald-500/10',
+  },
+  {
+    icon: Home,
+    category: 'Real Estate',
+    title: 'Estate Haus',
+    desc: 'A property listing platform with map search, virtual tour integration, and agent contact built directly into every listing page.',
+    image: 'https://images.pexels.com/photos/30580640/pexels-photo-30580640.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    alt: 'Front view of twin modern houses with symmetrical design',
+    tags: ['Map Search', 'Virtual Tours', 'Agent CRM'],
+    accent: 'text-blue-400',
+    ring: 'group-hover:ring-blue-500/30',
+    glow: 'group-hover:shadow-blue-500/10',
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    num: '01',
+    icon: Send,
+    title: 'Request Your Demo',
+    desc: "Tell us about your business and what you need. We'll map out a concept tailored to your industry — no commitment, no cost, no catch. Just a real preview of what we can build for you.",
+  },
+  {
+    num: '02',
+    icon: Eye,
+    title: 'Review Your Free Concept',
+    desc: 'Within days, you receive a working concept: layout, structure, and design direction. You review it, give feedback, and we refine until it feels right. You see the value before you spend a rupee.',
+  },
+  {
+    num: '03',
+    icon: LaunchIcon,
+    title: 'Launch & Grow',
+    desc: 'Once approved, we build the full site — fast, responsive, SEO-optimized, and conversion-ready. You go live with a digital presence that actually works for your business, not just looks nice.',
+  },
 ];
 
 function Nav() {
@@ -120,7 +272,9 @@ function Nav() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <a href="#" aria-label="UltraCraft Studio — Home" className="flex items-center group">
-          <UcsLogo />
+          <div className="transition-transform duration-300 group-hover:scale-105">
+            <UcsLogo />
+          </div>
         </a>
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Primary navigation">
@@ -158,7 +312,7 @@ function Nav() {
 
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          open ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         } bg-slate-950/95 backdrop-blur-xl border-b border-white/5`}
       >
         <div className="px-6 py-4 flex flex-col gap-4">
@@ -235,17 +389,17 @@ function Hero() {
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex items-center gap-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-8 py-4 rounded-full text-base transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/40 hover:-translate-y-1"
+            className="group relative flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold px-8 py-4 rounded-full text-base transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/40 hover:-translate-y-1"
           >
-            <MessageCircle size={18} className="transition-transform group-hover:scale-110" />
-            Chat on WhatsApp
+            <Sparkles size={18} className="transition-transform group-hover:scale-110" />
+            Claim Your Free Custom Demo
             <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           <a
-            href="#services"
+            href="#work"
             className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-semibold px-8 py-4 rounded-full text-base backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
           >
-            Explore Services
+            View Our Work
             <ArrowRight size={16} />
           </a>
         </div>
@@ -332,25 +486,173 @@ function Services() {
           {SERVICES.map((s, i) => (
             <article
               key={s.title}
-              className={`group relative bg-white/[0.03] border border-white/[0.07] rounded-2xl p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 overflow-hidden backdrop-blur-sm hover:shadow-2xl hover:${s.glow} ${
+              className={`group relative bg-white/[0.03] backdrop-blur-md border border-white/[0.07] rounded-2xl p-8 ${s.border} transition-all duration-500 overflow-hidden ${s.glow} ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${s.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${s.barColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${s.accent} mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                <s.icon size={22} className="text-white" strokeWidth={1.8} />
+              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${s.iconBg} border border-white/10 mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <s.icon size={22} className={s.iconColor} strokeWidth={1.8} />
               </div>
 
               <h3 className="text-white font-bold text-xl mb-3 tracking-tight">{s.title}</h3>
               <p className="text-slate-400 leading-relaxed text-sm">{s.desc}</p>
 
-              <div className="mt-6 flex items-center text-cyan-400 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className={`mt-6 flex items-center ${s.learnColor} ${s.learnHover} text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
                 Learn more <ArrowRight size={14} className="ml-1" />
               </div>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Showcase() {
+  const { ref, visible } = useInView();
+
+  return (
+    <section id="work" className="py-28 px-6 relative" aria-label="Our Work">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative">
+        <div className="text-center mb-16">
+          <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest mb-4 block">
+            Demo Showcase
+          </span>
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
+            Real concepts for{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+              real businesses
+            </span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+            We build demo concepts for local businesses every week. Here's a look at the kind of work we craft — and what yours could look like.
+          </p>
+        </div>
+
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SHOWCASE.map((item, i) => (
+            <article
+              key={item.title}
+              className={`group relative bg-white/[0.03] backdrop-blur-md border border-white/[0.07] rounded-2xl overflow-hidden ring-1 ring-white/[0.03] ${item.ring} ${item.glow} transition-all duration-500 ${
+                visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="relative h-52 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                <div className="absolute top-4 left-4 flex items-center gap-2 bg-slate-950/70 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5">
+                  <item.icon size={12} className={item.accent} />
+                  <span className="text-white text-xs font-semibold uppercase tracking-wider">{item.category}</span>
+                </div>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-white font-bold text-lg mb-2 tracking-tight">{item.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">{item.desc}</p>
+
+                <div className="flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs text-slate-400 bg-white/[0.04] border border-white/[0.06] rounded-full px-3 py-1"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold text-sm border-b border-cyan-400/30 hover:border-cyan-300 pb-0.5 transition-colors duration-200"
+          >
+            Want a demo for your business? Request one free <ArrowRight size={14} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  const { ref, visible } = useInView();
+
+  return (
+    <section id="process" className="py-28 px-6 relative" aria-label="Demo-First Process">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/4 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative">
+        <div className="text-center mb-16">
+          <span className="text-cyan-400 text-xs font-bold uppercase tracking-widest mb-4 block">
+            Demo-First Process
+          </span>
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
+            See the value{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+              before you pay
+            </span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+            No long sales calls. No upfront deposits. Just a clear, three-step process that puts a working concept in your hands first.
+          </p>
+        </div>
+
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-px bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-cyan-500/0" />
+
+          {PROCESS_STEPS.map((step, i) => (
+            <div
+              key={step.num}
+              className={`relative text-center transition-all duration-700 ${
+                visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${i * 150}ms` }}
+            >
+              <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-900 border border-cyan-500/20 mb-6 shadow-2xl shadow-cyan-500/10">
+                <step.icon size={24} className="text-cyan-400" strokeWidth={1.6} />
+                <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-cyan-500 text-slate-950 text-xs font-black flex items-center justify-center">
+                  {step.num}
+                </span>
+              </div>
+
+              <h3 className="text-white font-bold text-xl mb-3 tracking-tight">{step.title}</h3>
+              <p className="text-slate-400 leading-relaxed text-sm max-w-xs mx-auto">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-14">
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold px-8 py-4 rounded-full text-base transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/40 hover:-translate-y-1"
+          >
+            <Sparkles size={18} className="transition-transform group-hover:scale-110" />
+            Claim Your Free Custom Demo
+          </a>
         </div>
       </div>
     </section>
@@ -370,7 +672,7 @@ function About() {
           }`}
         >
           <div className="relative">
-            <div className="relative bg-white/[0.03] border border-white/[0.07] rounded-3xl p-8 overflow-hidden">
+            <div className="relative bg-white/[0.03] backdrop-blur-md border border-white/[0.07] rounded-3xl p-8 overflow-hidden">
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-cyan-500/10 to-transparent rounded-3xl" />
 
               <div className="relative z-10">
@@ -475,7 +777,7 @@ function WhyUs() {
           {WHY_US.map((item, i) => (
             <div
               key={i}
-              className={`group flex gap-4 bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.06] hover:border-cyan-500/20 transition-all duration-400 ${
+              className={`group flex gap-4 bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-2xl p-6 hover:bg-white/[0.06] hover:border-cyan-500/20 transition-all duration-400 ${
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
               style={{ transitionDelay: `${i * 60}ms` }}
@@ -507,7 +809,7 @@ function CTABanner() {
           visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
         }`}
       >
-        <div className="relative bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 border border-white/[0.08] rounded-3xl px-8 md:px-16 py-16 text-center overflow-hidden shadow-2xl">
+        <div className="relative bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 border border-white/[0.08] rounded-3xl px-8 md:px-16 py-16 text-center overflow-hidden shadow-2xl backdrop-blur-md">
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-[500px] h-[500px] rounded-full border border-cyan-500/10" />
           </div>
@@ -532,7 +834,7 @@ function CTABanner() {
             </h2>
 
             <p className="text-slate-400 text-lg mb-10 max-w-lg mx-auto">
-              Let's talk directly. Skip the long forms — one WhatsApp message is all it takes to get started.
+              Let's talk directly. Skip the long forms — one WhatsApp message is all it takes to get your free custom demo started.
             </p>
 
             <a
@@ -630,6 +932,8 @@ export default function App() {
         <Hero />
         <Stats />
         <Services />
+        <Showcase />
+        <Process />
         <About />
         <WhyUs />
         <CTABanner />
